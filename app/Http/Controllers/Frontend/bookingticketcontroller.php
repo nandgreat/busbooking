@@ -17,16 +17,23 @@ class bookingticketcontroller extends Controller
         $from = BusRoute::all();
         return view('users.pages.bookingticket', compact('from'));
     }
+
+    public function bookingCodePage()
+    {
+        $from = BusRoute::all();
+        return view('users.pages.booking_code_page', compact('from'));
+    }
     public function webbusdetails(Request $request)
     {
         // dd($request->all());
         $date = $request->date;
         $from = $request->query('from');
         $to = $request->query('to');
+        $passengers = $request->no_of_passegers;
 
         if ($from && $to) {
             $trip = Trip::with('bus')->where('from', $from)->where('to', $to)->get();
-            return view('users.pages.webbusdetails', compact('trip', 'date', 'from', 'to'));
+            return view('users.pages.webbusdetails', compact('trip', 'date', 'from', 'passengers', 'to'));
         }
         //  dd(request()->all());
         $trip = Trip::all();

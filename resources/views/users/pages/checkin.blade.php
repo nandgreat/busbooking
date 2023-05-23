@@ -11,56 +11,61 @@
 <div class="row">
     <div class="container">
 
-        <h2 class="center"><b>Trip Details</b></h2>
         <div class="row">
+            <div class="col-md-6" style="margin-top: 40px;">
+                <!--Card-->
+                <div class="card col-md-12 shadow mb-5 bg-white rounded">
+                    <!--Card-Body-->
+                    <div class="card-body">
+                        <!--Card-Title-->
+                        <p class="card-title text-center shadow mb-5 rounded">Check In</p>
+                        <div class="icons text-center">
 
-            <div class="col-md-6">
-                <div class="table mt-5">
-                    @if($details->count()>0)
+                            <p class="searchText"><strong>Upload Travel Documents</strong></p>
 
-                    <h3 class="">{{$details->from}} - {{$details->to}}</h3>
+                            @if ($message = Session::get('error'))
+                            <div class="col-md-12" role="alert">
+                                <div class="alert alert-danger mb-4" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close" data-dismiss="alert">
+                                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                                        </svg></button>
+                                    {{$message}}
+                                </div>
+                            </div>
+                            @endif
 
-                    <div class="row" style="justify-content: space-between; margin-top:30px">
-                        <p>Travel Type</p>
-                        <p>{{$details->bus->bus_type}}</pack>
+                            @if ($message = Session::get('success'))
+                            <div class="col-md-12" role="alert">
+                                <div class="alert alert-success mb-4" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close" data-dismiss="alert">
+                                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                                        </svg></button>
+                                    {{$message}}
+                                </div>
+                            </div>
+                            @endif
+                            <form action="{{route('booking.upload-documents')}}" enctype="multipart/form-data" method="POST">
+                                @csrf
+                                <div class="row mt-4 mb-4">
+                                    <div class="col-sm-12 mb-4">
+                                        <label>Enter Booking Code</label><br>
+                                        <input name="booking_code" type="text" id="booking_code" required>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <label>Select Document:</label><br>
+                                        <input name="travel_document" type="file" id="travel_document" required>
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-primary" type="submit">Upload</button>
+                            </form>
+                        </div>
                     </div>
-
-                    <div class="row" style="justify-content: space-between;">
-                        <p>Bus No</p>
-                        <p>{{$details->bus->coach_number}}</pack>
-                    </div>
-
-                    <div class="row" style="justify-content: space-between;">
-                        <p>No of Passengers</p>
-                        <p>{{$passengers}}</pack>
-                    </div>
-
-                    <div class="row" style="justify-content: space-between;">
-                        <p>Departure Date</p>
-                        <p>{{$details->departure_date}} {{$details->departure_time}}</pack>
-                    </div>
-
-                    <div class="row" style="justify-content: space-between;">
-                        <p>Trip Amount</p>
-                        <p>{{number_format($details->price * $passengers)}}</pack>
-                    </div>
-
-                    <div class="row" style="justify-content: space-between;">
-                        <p>Seats Available</p>
-                        <p>{{$details->seats_available}}</pack>
-                    </div>
-
-                    <div class="row" style="justify-content: space-between; margin-top: 30px">
-                        <a class="btn btn-primary" style="padding:10px" href="{{route('booking.installmentalpayment',['trip_id'=>$details->id, 'passengers' => $passengers])}}">Installmental Payment</a>
-                        <a class="btn btn-success" style="padding:10px" href="{{route('booking.payment',['trip_id'=>$details->id, 'passengers' => $passengers, 'amount'=>$details->price])}}">Payment Now</a>
-                    </div>
-                    @else
-                    <p>No trip found</p>
-
-                    @endif
-
                 </div>
             </div>
+
             <div class="col-md-6">
                 <div class="right-image"></div>
             </div>

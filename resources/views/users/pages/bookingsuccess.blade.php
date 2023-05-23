@@ -11,65 +11,19 @@
 <div class="row">
     <div class="container">
 
-        <h2 class="center"><b>Trip Details</b></h2>
-        <div class="row">
+        <div class="success-main-bg">
+            <div style="justify-content: flex-start; flex-direction: column;  display: flex; text-align: center; align-items: center;">
+                <div class="check_img"></div>
+                <p style="font-size: 30px; font-weight: bold;">Payment Successfull</p>
+                <p>Your booking is confirmed. Check your mail for receipt and travel details</p>
+                <h4>Booking Code: {{$book->booking_code}}</h4>
+                <a class="btn btn-primary" style="padding: 10px; background-color:#102983" href="{{route('booking')}}" role="button">Book Another Ticket</a>
 
-            <div class="col-md-6">
-                <div class="table mt-5">
-                    @if($details->count()>0)
 
-                    <h3 class="">{{$details->from}} - {{$details->to}}</h3>
-
-                    <div class="row" style="justify-content: space-between; margin-top:30px">
-                        <p>Travel Type</p>
-                        <p>{{$details->bus->bus_type}}</pack>
-                    </div>
-
-                    <div class="row" style="justify-content: space-between;">
-                        <p>Bus No</p>
-                        <p>{{$details->bus->coach_number}}</pack>
-                    </div>
-
-                    <div class="row" style="justify-content: space-between;">
-                        <p>No of Passengers</p>
-                        <p>{{$passengers}}</pack>
-                    </div>
-
-                    <div class="row" style="justify-content: space-between;">
-                        <p>Departure Date</p>
-                        <p>{{$details->departure_date}} {{$details->departure_time}}</pack>
-                    </div>
-
-                    <div class="row" style="justify-content: space-between;">
-                        <p>Trip Amount</p>
-                        <p>{{number_format($details->price * $passengers)}}</pack>
-                    </div>
-
-                    <div class="row" style="justify-content: space-between;">
-                        <p>Seats Available</p>
-                        <p>{{$details->seats_available}}</pack>
-                    </div>
-
-                    <div class="row" style="justify-content: space-between; margin-top: 30px">
-                        <a class="btn btn-primary" style="padding:10px" href="{{route('booking.installmentalpayment',['trip_id'=>$details->id, 'passengers' => $passengers])}}">Installmental Payment</a>
-                        <a class="btn btn-success" style="padding:10px" href="{{route('booking.payment',['trip_id'=>$details->id, 'passengers' => $passengers, 'amount'=>$details->price])}}">Payment Now</a>
-                    </div>
-                    @else
-                    <p>No trip found</p>
-
-                    @endif
-
-                </div>
             </div>
-            <div class="col-md-6">
-                <div class="right-image"></div>
-            </div>
-
         </div>
 
-
     </div>
-
 </div>
 
 

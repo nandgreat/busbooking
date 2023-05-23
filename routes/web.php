@@ -136,14 +136,19 @@ Route::group(['middleware' => 'handle'], function () {
     Route::get('/webbusdetails/show', [bookingticketcontroller::class, 'webbusdetails'])->name('webbusdetails');
     Route::post('/webbusdetails/store', [bookingticketcontroller::class, 'webbusdetailsstore'])->name('webbusdetails.store');
 
-
     //route for booking
-    Route::post('/user/buy/ticket{id}', [ShowSeatInfocontroller::class, 'bookTicket'])->name('user.book.ticket');
+    Route::get('/check-in', [ShowBookingInfoController::class, 'checkInPage'])->name('user.book.ticket');
+    Route::post('/upload-documents', [ShowBookingInfoController::class, 'uploadTravelDocuments'])->name('booking.upload-documents');
+    Route::get('/user/buy/ticket', [ShowSeatInfocontroller::class, 'bookTicket'])->name('user.book.ticket');
     Route::get('/showbooking/info', [ShowBookingInfoController::class, 'showbookinginfo'])->name('showbooking.info');
-    Route::get('/showtripinfo/info/{tripId}', [ShowBookingInfoController::class, 'showTripInfo'])->name('showtrip.info');
+    Route::get('/showtripinfo/info', [ShowBookingInfoController::class, 'showTripInfo'])->name('showtrip.info');
+    Route::get('/bookingsuccess', [ShowBookingInfoController::class, 'showBookingSuccess'])->name('booking.success');
+    Route::get('/payment-page', [ShowBookingInfoController::class, 'showPaymentPage'])->name('booking.payment');
+    Route::get('/booking-code-page', [ShowBookingInfoController::class, 'bookingCodePage'])->name('booking.bookingCode');
+    Route::get('/installmentall-payment-page', [ShowBookingInfoController::class, 'showInstallmentalPaymentPage'])->name('booking.installmentalpayment');
+    Route::post('/installmental-payment-code-page', [ShowBookingInfoController::class, 'showInstallmentalPaymentCodePage'])->name('booking.installmentPaymentCode');
     //route for print
     Route::get('/print/view{id}', [ShowBookingInfoController::class, 'viewinfo'])->name('view.info');
-
 
     //userpayment
     Route::get('user/payment/{id}', [UserPaymentController::class, 'userpayment'])->name('user.payment');

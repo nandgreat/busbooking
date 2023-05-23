@@ -59,7 +59,6 @@
   /* BASIC */
 
   html {
-    background-color: #56baed;
   }
 
   body {
@@ -423,9 +422,12 @@
               </div>
               @endif
 
-              <input type="email" id="email" class="fadeIn second col-md-12" name="email" placeholder="Enter  Email">
-              <input type="password" id="password" class="fadeIn third col-md-12 mt-sm-4" name="password" placeholder="password">
-
+              <div style="width: 100%;">
+                <label class="mt-3" for="email">Email</label><br>
+                <input type="email" id="email" class="fadeIn second" style="width: 100%;" name="email" placeholder="Enter  Email">
+                <label class="mt-3" for="password">Password</label>
+                <input type="password" id="password" style="width: 100%;" class="fadeIn third col-md-12 mt-sm-4" name="password" placeholder="password">
+              </div>
               <button type="submit" style="background-color: #102983; padding-top:15px; padding-bottom:15px;" class="btn btn-block btn-primary mt-sm-3 fadeIn fouth">Log in</button>
             </div>
             <br>

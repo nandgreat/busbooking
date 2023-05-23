@@ -11,9 +11,8 @@
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{url('/')}}">Home</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{url('/bookingticket/show')}}" style="margin-right: 15px;text-decoration: none">Buy Ticket</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{url('/showbooking/info')}}" style="margin-right: 15px;text-decoration: none">Bookings</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{url('/showbooking/info')}}" style="margin-right: 15px;text-decoration: none">Services</a></li>
-                <li class="nav-item"><a Contact class="nav-link js-scroll-trigger" href="#about">Checking</a></li>
-                <li class="nav-item"><a Contact class="nav-link js-scroll-trigger" href="#payment">Payment</a></li>
+                <li class="nav-item"><a Contact class="nav-link js-scroll-trigger" href="{{url('/check-in')}}">Check-In</a></li>
+                <li class="nav-item"><a Contact class="nav-link js-scroll-trigger" href="{{route('booking.bookingCode')}}">Installmental Payment</a></li>
                 @if(auth()->user())
                 <span class="nav-item" style="margin-top: 24px; color: rgba(0, 0, 0, 0.5)">{{auth()->user()->name}}</span>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('user.logout')}}">Logout</a></li>

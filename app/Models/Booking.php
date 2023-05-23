@@ -31,6 +31,10 @@ class Booking extends Model
         return $this->belongsToMany(Seat::class);
     }
 
+    public function status(){
+        return $this->hasOne(BookingStatus::class);
+    }
+
 
      public function counter(){
         return $this->belongsTo(Counter::class,'counter_id','id');

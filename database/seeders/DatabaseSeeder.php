@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(class:SeatSeeder::class);
         $this->call(class:RouteSeeder::class);
         $this->call(class:TripSeeder::class);
+        $this->call(class:BookingStatusSeeder::class);
 
     }
 }

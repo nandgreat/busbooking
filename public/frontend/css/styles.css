@@ -10283,6 +10283,52 @@ body {
   background-size: contain;
 }
 
+.success-main-bg {
+  height: 650px;
+  width: 100%;
+  position: relative;
+  top: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url("../assets/img/bus_image_transparent.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: contain;
+}
+
+.payment-paypal-logos {
+  height: 40px;
+  width: 150px;
+  background: url("../assets/img/visa_card.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.payment-mastercard-logos {
+  height: 40px;
+  width: 50px;
+  background: url("../assets/img/paypal.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.payment-visa-logos {
+  height: 40px;
+  width: 50px;
+  background: url("../assets/img/master_card.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.check_img {
+  height: 150px;
+  width: 150px;
+  background: url("../assets/img/check.png");
+  background-size: cover;
+}
+
 
 
 .masthead h1 {

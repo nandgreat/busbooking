@@ -42,9 +42,9 @@
                             <td>{{($a->bus->bus_name)}}</td>
                             <td>{{($a->bus->bus_type)}} </td>
                             <td>{{$a->departure_date}} {{($a->departure_time)}}</td>
-                            <td>&#8358;{{($a->price)}}</td>
+                            <td>&#8358;{{($a->price * $passengers)}}</td>
                             <td>
-                                <a class="btn btn-primary" style="padding: 10px;" href="{{route('showtrip.info',['tripId'=>$a->id])}}" role="button">View Details</a>
+                                <a class="btn btn-primary" style="padding: 10px;" href="{{route('showtrip.info',['trip_id'=>$a->id, 'passengers' => $passengers ])}}" role="button">View Details</a>
                             </td>
                         </tr>
                         @endforeach

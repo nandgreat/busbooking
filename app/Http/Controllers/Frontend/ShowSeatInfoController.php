@@ -9,9 +9,7 @@ use App\Models\Seat;
 use App\Models\Booking;
 use App\Models\Bookings_seat;
 use App\Models\Counter;
-
-
-
+use App\Models\Payment;
 
 class ShowSeatInfoController extends Controller
 {
@@ -33,31 +31,58 @@ class ShowSeatInfoController extends Controller
         }
     }
 
-    public function bookTicket(Request $request, $id)
+    public function bookTicket(Request $request)
     {
-        //  dd($request->all());
 
-        $trip = Trip::find($id);
-        // dd($trip->price);
-        $book = Booking::create([
-            'user_id' => auth()->user()->id,
-            'trip_id' => $id,
-            'counter_id' => $request->input('counter_id'),
-            'date' => $request->date
-        ]);
-        foreach ($request->seat as $key => $seat) {
-            Bookings_seat::create([
-                'bookings_id' => $book->id,
-                'seat_id' => $seat,
+        if (isset($request->booking_code)) {
 
+            $book = Booking::where('booking_code', $request->booking_code)->first();
+
+            if ($book) {
+                $payment = Payment::create([
+                    'booking_id' => $book->id,
+                    'user_id' => auth()->user()->id,
+                    'payment_mathod' => 'card',
+                    'transaction_id' => $book->booking_code,
+                    'amount' => $book->amount / 2
+                ]);
+
+                $book->booking_status_id = 3;
+                $book->save();
+
+                return view('users.pages.bookingsuccess', compact('book'));
+            } else {
+                return redirect()->back()->withErrors("Invalid Booking Code");
+            }
+        } else {
+            $trip = Trip::find($request->trip_id);
+
+            $totalAmount = $trip->price * $request->passengers;
+            // dd($trip->price);
+            $book = Booking::create([
+                'booking_code' => "TN" . rand(10000, 99999),
+                'user_id' => auth()->user()->id,
+                'trip_id' => $request->trip_id,
+                'no_of_passengers' => $request->passengers,
+                'booking_status_id' => 2,
+                'sub_total' => $totalAmount,
+                'date' => $trip->departure_date
             ]);
+
+            $payment = Payment::create([
+                'booking_id' => $book->id,
+                'user_id' => auth()->user()->id,
+                'payment_mathod' => 'card',
+                'transaction_id' => $book->booking_code,
+                'amount' => $totalAmount / 2,
+            ]);
+
+            // dd($key+1);
+            $book = Booking::find($book->id);
+            $book->update([
+                'sub_total' => $totalAmount
+            ]);
+            return view('users.pages.bookingsuccess', compact('book'));
         }
-        // dd($key+1);
-        $subtotal = $trip->price * ($key + 1);
-        $book = Booking::find($book->id);
-        $book->update([
-            'sub_total' => $subtotal
-        ]);
-        return redirect()->back()->with('message', 'your ticket booking done');
     }
 }

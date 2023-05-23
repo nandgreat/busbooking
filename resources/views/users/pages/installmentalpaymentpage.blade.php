@@ -11,58 +11,51 @@
 <div class="row">
     <div class="container">
 
-        <h2 class="center"><b>Trip Details</b></h2>
         <div class="row">
-
-            <div class="col-md-6">
-                <div class="table mt-5">
-                    @if($details->count()>0)
-
-                    <h3 class="">{{$details->from}} - {{$details->to}}</h3>
-
-                    <div class="row" style="justify-content: space-between; margin-top:30px">
-                        <p>Travel Type</p>
-                        <p>{{$details->bus->bus_type}}</pack>
-                    </div>
-
-                    <div class="row" style="justify-content: space-between;">
-                        <p>Bus No</p>
-                        <p>{{$details->bus->coach_number}}</pack>
-                    </div>
-
-                    <div class="row" style="justify-content: space-between;">
-                        <p>No of Passengers</p>
-                        <p>{{$passengers}}</pack>
-                    </div>
-
-                    <div class="row" style="justify-content: space-between;">
-                        <p>Departure Date</p>
-                        <p>{{$details->departure_date}} {{$details->departure_time}}</pack>
-                    </div>
-
-                    <div class="row" style="justify-content: space-between;">
-                        <p>Trip Amount</p>
-                        <p>{{number_format($details->price * $passengers)}}</pack>
-                    </div>
-
-                    <div class="row" style="justify-content: space-between;">
-                        <p>Seats Available</p>
-                        <p>{{$details->seats_available}}</pack>
-                    </div>
-
-                    <div class="row" style="justify-content: space-between; margin-top: 30px">
-                        <a class="btn btn-primary" style="padding:10px" href="{{route('booking.installmentalpayment',['trip_id'=>$details->id, 'passengers' => $passengers])}}">Installmental Payment</a>
-                        <a class="btn btn-success" style="padding:10px" href="{{route('booking.payment',['trip_id'=>$details->id, 'passengers' => $passengers, 'amount'=>$details->price])}}">Payment Now</a>
-                    </div>
-                    @else
-                    <p>No trip found</p>
-
-                    @endif
-
-                </div>
+            <div class="col-md-12">
+                <h2>Available Trips</h2>
             </div>
             <div class="col-md-6">
-                <div class="right-image"></div>
+                <h4 style="color: #102883">{{$details->from}} - {{$details->to}}</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="table mt-5">
+                @if($installDetails)
+                <table style="width:100%">
+                    <thead>
+                        <tr>
+                            <th scope="col">S/No</th>
+                            <th scope="col">Installment</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Pay Day</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($installDetails as $a)
+                        <tr>
+                            <td>{{($a['count'])}}</td>
+                            <td>{{($a['installment'])}}</td>
+                            <td>&#8358;{{$a['amount']}} </td>
+                            <td>{{$a['payday']}}</td>
+
+                        </tr>
+                        @endforeach
+
+                    </tbody>
+                </table>
+
+                @else
+                <p>No trip found</p>
+
+                @endif
+
+                @if($booking_status == 1 || $booking_status == 2)
+                <div class="row" style="justify-content: space-between; margin-top: 30px">
+                    <a class="btn btn-success" style="padding:10px" href="{{route('booking.payment',['trip_id'=>$details->id, 'booking_code' => isset($booking_code) ? $booking_code : '', 'passengers' => $passengers, 'amount'=>$amount/2])}}">Payment Now</a>
+                </div>
+                @endif
             </div>
 
         </div>
@@ -71,7 +64,6 @@
     </div>
 
 </div>
-
 
 @endsection
 

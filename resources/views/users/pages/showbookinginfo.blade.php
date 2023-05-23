@@ -11,57 +11,42 @@
 <div class="row">
     <div class="container">
 
-        <h2 class="center"><b>Booking Details</b></h2>
+        <h2 class="center"><b>Bookings</b></h2>
 
         <div class="row">
 
-            <div class="col-md-6">
-                <div class="table mt-5">
-                    @if($details->count()>0)
+            <div class="table mt-5" style="width:100%">
+                @if($details->count()>0)
+                <table style="width:100%">
+                    <thead>
+                        <tr>
+                            <th scope="col">S/No</th>
+                            <th scope="col">Bus Name</th>
+                            <th scope="col">Bus Type</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                    @foreach($details as $detail)
-                    <h3 class="">{{$detail->trip->from}} - {{$detail->trip->to}}</h3>
+                        @foreach($details as $key=>$a)
+                        <tr>
+                            <td>{{($key+1)}}</td>
+                            <td>{{($a->trip->bus->bus_name)}}</td>
+                            <td>{{($a->trip->bus->bus_type)}} </td>
+                            <td>{{$a->trip->departure_date}} {{($a->trip->departure_time)}}</td>
+                            <td>&#8358;{{($a->trip->price)}}</td>
 
-                    <div class="row" style="justify-content: space-between;">
-                        <p>Name</p>
-                        <p>{{$detail->user->name}}</pack>
-                    </div>
+                        </tr>
+                        @endforeach
 
-                    <div class="row" style="justify-content: space-between;">
-                        <p>Email</p>
-                        <p>{{$detail->user->email}}</pack>
-                    </div>
+                    </tbody>
+                </table>
 
-                    <div class="row" style="justify-content: space-between;">
-                        <p>Bus Name</p>
-                        <p>{{$detail->trip->bus_name}}</pack>
-                    </div>
+                @else
+                <p>No trip found</p>
 
-                    <div class="row" style="justify-content: space-between;">
-                        <p>Subtotal</p>
-                        <p>{{$detail->sub_total}}</pack>
-                    </div>
-
-                    <div class="row" style="justify-content: space-between;">
-                        <p>Date</p>
-                        <p>{{$detail->date}}</pack>
-                    </div>
-
-                    <div class="row" style="justify-content: space-between;">
-                        <p>Name</p>
-                        <a class="btn btn-danger" style="padding:10px" href="{{route('user.payment',$detail->id)}}">Make Payment</a>
-                    </div>
-                    @endforeach
-
-
-                    @else
-                    <p>No trip found</p>
-
-                    @endif
-
-                </div>
-            </div>
-            <div class="col-md-6">
+                @endif
 
             </div>
 
