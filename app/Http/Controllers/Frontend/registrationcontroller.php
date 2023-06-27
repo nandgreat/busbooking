@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ForgotPasswordMail;
 use Illuminate\Http\Request;
 use App\Models\User;
 use  Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
@@ -64,6 +66,33 @@ class registrationcontroller extends Controller
 
             return redirect()->route('loginshow');
         }
+    }
+
+    public function processForgotPassword(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return redirect()->back()->with("error", "Invalid Email Provided");
+        }
+
+        $mailData = [
+            'title' => 'Mail from ItSolutionStuff.com',
+            'body' => 'This is for testing email using smtp.'
+        ];
+         
+        Mail::to($user->email)->send(new ForgotPasswordMail($mailData));
+           
+
+        return redirect()->back()->with("success", "Recovery Email sent successfully");
+    }
+
+    public function forgotPassword(Request $request)
+    {
+        // dd($request->all());
+
+
+        return view('users.pages.forgotpassword');
     }
 
     public function logout()

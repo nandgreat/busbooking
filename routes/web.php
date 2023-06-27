@@ -119,6 +119,8 @@ Route::get('/', function () {
 
 Route::get('/user/login/show', [registrationcontroller::class, 'loginshow'])->name('loginshow');
 Route::post('/login/post', [registrationcontroller::class, 'loginPost'])->name('user.post.login');
+Route::get('/forgotpassword', [registrationcontroller::class, 'forgotPassword'])->name('user.forgotpassword');
+Route::post('/process-forgotpassword', [registrationcontroller::class, 'processForgotPassword'])->name('user.process.forgotpassword');
 Route::get('/user/registration/show', [registrationcontroller::class, 'registrationshow'])->name('registration');
 Route::post('/user/store', [registrationcontroller::class, 'userstore'])->name('user.store');
 Route::get('/user/logout', [registrationcontroller::class, 'logout'])->name('user.logout');
