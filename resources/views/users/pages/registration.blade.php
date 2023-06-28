@@ -101,5 +101,3 @@
 
 </div>
 </div>
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v14.0&appId=836525167002150&autoLogAppEvents=1" nonce="LJ1gB9sE"></script>
