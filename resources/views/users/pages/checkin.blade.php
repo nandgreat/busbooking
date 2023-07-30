@@ -12,16 +12,14 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-md-6" style="margin-top: 40px;">
+            <div class="col-md-6 offset-3" style="margin-top: 40px;">
                 <!--Card-->
-                <div class="card col-md-12 shadow mb-5 bg-white rounded">
                     <!--Card-Body-->
                     <div class="card-body">
                         <!--Card-Title-->
-                        <p class="card-title text-center shadow mb-5 rounded">Check In</p>
-                        <div class="icons text-center">
+                        <div class="icons text-left">
 
-                            <p class="searchText"><strong>Upload Travel Documents</strong></p>
+                            <p class="searchText" style="font-size: 30px;"><strong>Check In</strong></p>
 
                             @if ($message = Session::get('error'))
                             <div class="col-md-12" role="alert">
@@ -48,27 +46,22 @@
                             @endif
                             <form action="{{route('booking.upload-documents')}}" enctype="multipart/form-data" method="POST">
                                 @csrf
-                                <div class="row mt-4 mb-4">
+                                <div class="row mt-4" style="margin-bottom: 40px;">
                                     <div class="col-sm-12 mb-4">
-                                        <label>Enter Booking Code</label><br>
-                                        <input name="booking_code" type="text" id="booking_code" required>
+                                        <label>Booking Reference Number</label><br>
+                                        <input name="booking_code" class="col-md-12" type="text" id="booking_code" placeholder="Enter Booking Reference" required>
                                     </div>
                                     <div class="col-sm-12">
                                         <label>Select Document:</label><br>
-                                        <input name="travel_document" type="file" id="travel_document" required>
+                                        <input name="travel_document" class="col-md-12" type="file" id="travel_document" required>
                                     </div>
                                 </div>
 
-                                <button class="btn btn-primary" type="submit">Upload</button>
+                                <button class="btn btn-primary btn-block" type="submit">Upload</button>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="right-image"></div>
-            </div>
 
         </div>
 
