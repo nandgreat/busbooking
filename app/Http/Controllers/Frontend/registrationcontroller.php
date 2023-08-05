@@ -29,11 +29,9 @@ class registrationcontroller extends Controller
 
 
         $validator = Validator::make($request->all(), [
-            'first_name' => 'required|string',
-            'last_name' => 'required|string',
+            'full_name' => 'required|string',
             'email' => 'required|email',
             'password' => 'required|string',
-            'phone' => 'required|string'
         ]);
 
         if ($validator->fails()) {
@@ -42,12 +40,10 @@ class registrationcontroller extends Controller
 
 
         User::Create([
-            'name' => $request->first_name,
-            'lastname' => $request->last_name,
+            'name' => $request->full_name,
+            'lastname' => $request->full_name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'phone' => $request->phone,
-
         ]);
         return redirect()->back()->with('message', 'Congratulations, Registration Successfull');
     }
