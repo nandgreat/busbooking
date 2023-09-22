@@ -18,6 +18,7 @@ use App\Http\Controllers\Frontend\registrationcontroller;
 use App\Http\Controllers\Frontend\ShowSeatInfoController;
 use App\Http\Controllers\Frontend\bookingticketcontroller;
 use App\Http\Controllers\Frontend\CustomerProfilecontroller;
+use App\Http\Controllers\Frontend\DeliveryController;
 use App\Http\Controllers\Frontend\ShowBookingInfoController;
 use App\Http\Controllers\Frontend\UserPaymentController;
 
@@ -43,7 +44,7 @@ Route::get('/admin/login', [AdminLoginController::class, 'login'])->name('admin.
 Route::post('/admin/dologin', [AdminLoginController::class, 'dologin'])->name('admin.do.login');
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
-    Route::get('/admin', [HomeController::class, 'admin'])->name('dashboard');
+    Route::get('/admin', [HomeController::class, 'admin'])->name('admin-dashboard');
 
     //  function(){
     // return view('admin.master');
@@ -139,7 +140,14 @@ Route::group(['middleware' => 'handle'], function () {
     Route::post('/webbusdetails/store', [bookingticketcontroller::class, 'webbusdetailsstore'])->name('webbusdetails.store');
 
     //route for booking
-    Route::get('/check-in', [ShowBookingInfoController::class, 'checkInPage'])->name('user.book.ticket');
+    Route::get('/check-in', [ShowBookingInfoController::class, 'checkInPage'])->name('user.book.checkin');
+    Route::get('/delivery', [DeliveryController::class, 'deliveryPage'])->name('user.book.delivery');
+    Route::post('/process-delivery-booking', [DeliveryController::class, 'processDelivery'])->name('process.delivery');
+    Route::get('/delivery-status', [DeliveryController::class, 'deliveryStatus'])->name('user.book.delivery_status');
+    Route::get('/delivery-history', [DeliveryController::class, 'deliveryHistory'])->name('user.book.delivery_history');
+    Route::post('/delivery-status', [DeliveryController::class, 'checkDeliveryStatus'])->name('process.delivery_status');
+    Route::get('/customer-service', [DeliveryController::class, 'customerService'])->name('user.book.customer_service');
+    Route::get('/report-feedback', [DeliveryController::class, 'reportsAndFeedbacks'])->name('user.book.report_feedback');
     Route::post('/upload-documents', [ShowBookingInfoController::class, 'uploadTravelDocuments'])->name('booking.upload-documents');
     Route::get('/user/buy/ticket', [ShowSeatInfocontroller::class, 'bookTicket'])->name('user.book.ticket');
     Route::get('/showbooking/info', [ShowBookingInfoController::class, 'showbookinginfo'])->name('showbooking.info');

@@ -13,7 +13,7 @@
 
         <div class="row">
             <div class="col-md-4" style="margin-top: 40px;">
-                <h3 class="card-title text-center">ABOUT CCT </h3>
+                <h3 class="card-title text-center">ABOUT SST </h3>
                 <p class="text-center">Lorem simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
             </div>
 

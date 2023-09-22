@@ -31,6 +31,9 @@
     @include('users.fixed.navbar')
     @yield('content')
     @include('users.fixed.footer')
+
+    @yield('myjsfile')
+
     <!-- Footer-->
     <!-- Bootstrap core JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

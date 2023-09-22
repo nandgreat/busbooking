@@ -43,14 +43,14 @@
                             <div class="row">
 
                                 <div class="col-md-6 offset-md-3">
-                                    <label class="mt-3" for="card_name">Name on Card</label>
-                                    <input type="text" id="card_name" class="form-control" placeholder="Name on Card" name='card_name' autofocus="">
-                                    <label class="mt-3" for="card_name">Card Number</label>
-                                    <input type="number" id="card_name" class="form-control" placeholder="Card Number" name='card_number' autofocus="">
-                                    <label class="mt-3" for="exp_date">Expiry Date</label>
-                                    <input type="text" id="exp_date" class="form-control" placeholder="Expiry Dateing (MM/YY)" name='exp_date' autofocus="">
-                                    <label class="mt-3" for="cvv">CVV</label>
-                                    <input type="number" id="cvv" class="form-control" placeholder="CVV" name='cvv' autofocus="">
+                                    <label class="mt-3 text-left col-md-11" for="card_name">Name on Card</label>
+                                    <input type="text" id="card_name" placeholder="Name on Card" name='card_name' autofocus="">
+                                    <label class="mt-3 text-left col-md-11" for="card_name">Card Number</label>
+                                    <input type="number" id="card_name" placeholder="Card Number" name='card_number' autofocus="">
+                                    <label class="mt-3 text-left col-md-11" for="exp_date">Expiry Date</label>
+                                    <input type="text" id="exp_date" placeholder="Expiry Dateing (MM/YY)" name='exp_date' autofocus="">
+                                    <label class="mt-3 text-left col-md-11" for="cvv">CVV</label>
+                                    <input type="number" id="cvv" placeholder="CVV" name='cvv' autofocus="">
                                     <a class="w-100 btn btn-md btn-primary mt-4" style="font-size: 20px;" href="{{route('user.book.ticket',['trip_id'=>$details->id, 'booking_code' => $booking_code, 'passengers' => $passengers])}}" type="submit">Pay {{$amount}}</a>
 
                                 </div>
@@ -63,17 +63,16 @@
                             <!-- Login Form -->
                             <div class="row">
 
-
                                 <div class="col-md-6 offset-md-3">
-                                    <label class="mt-3" for="last_name">Name on Card</label>
-                                    <input type="text" id="first_name" class="form-control" placeholder="Name on Card" name='card_name' autofocus="">
+                                    <label class="mt-3 text-left col-md-11" for="last_name">Name on Card</label>
+                                    <input type="text" id="first_name" placeholder="Name on Card" name='card_name' autofocus="">
 
-                                    <label class="mt-3" for="last_name">Card Number</label>
-                                    <input type="number" id="last_name" class="form-control" placeholder="Card Number" name='card_number' autofocus="">
-                                    <label class="mt-3" for="email">Expiry Date</label>
-                                    <input type="text" id="exp_date" class="form-control" placeholder="Expiry Dateing (MM/YY)" name='exp_date' autofocus="">
-                                    <label class="mt-3" for="phone">CVV</label>
-                                    <input type="phone" id="phone" class="form-control" placeholder="CVV" name='phone' autofocus="">
+                                    <label class="mt-3 text-left col-md-11" for="last_name">Card Number</label>
+                                    <input type="number" id="last_name" placeholder="Card Number" name='card_number' autofocus="">
+                                    <label class="mt-3 text-left col-md-11" for="email">Expiry Date</label>
+                                    <input type="text" id="exp_date" placeholder="Expiry Dateing (MM/YY)" name='exp_date' autofocus="">
+                                    <label class="mt-3 text-left col-md-11" for="phone">CVV</label>
+                                    <input type="phone" id="phone" placeholder="CVV" name='phone' autofocus="">
                                     <a class="w-100 btn btn-md btn-primary mt-4" style="font-size: 20px;" href="{{route('user.book.ticket',['trip_id'=>$details->id,'booking_code' => isset($booking_code) ? $booking_code : '', 'passengers' => $passengers])}}" type="submit">Pay {{$amount}}</a>
                                 </div>
                             </div>

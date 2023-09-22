@@ -60,7 +60,7 @@ class ShowSeatInfoController extends Controller
             $totalAmount = $trip->price * $request->passengers;
             // dd($trip->price);
             $book = Booking::create([
-                'booking_code' => "TN" . rand(10000, 99999),
+                'booking_code' => "SST" . rand(10000, 99999),
                 'user_id' => auth()->user()->id,
                 'trip_id' => $request->trip_id,
                 'no_of_passengers' => $request->passengers,
