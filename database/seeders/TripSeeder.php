@@ -19,9 +19,9 @@ class TripSeeder extends Seeder
                 'bus_id' => 1,
                 'from' => 'Abuja',
                 'to' => 'Lagos',
-                'departure_date' => '2022-08-25',
+                'departure_date' => '2023-09-28',
                 'departure_time' => '9:00am',
-                'price' => '15000',
+                'price' => '11000',
                 'seats_available' => '18',
                 'seats_taken' => '0',
                 'created_at' => now()
@@ -30,13 +30,68 @@ class TripSeeder extends Seeder
                 'bus_id' => 2,
                 'from' => 'Abuja',
                 'to' => 'Jos',
-                'departure_date' => '2022-08-25',
+                'departure_date' => '2023-09-28',
                 'departure_time' => '9:00am',
-                'price' => '8500',
+                'price' => '3000',
                 'seats_available' => '18',
                 'seats_taken' => '0',
                 'created_at' => now()
-            ]
+            ],
+            [
+                'bus_id' => 1,
+                'from' => 'Abuja',
+                'to' => 'Lagos',
+                'departure_date' => '2023-09-29',
+                'departure_time' => '9:00am',
+                'price' => '7500',
+                'seats_available' => '18',
+                'seats_taken' => '0',
+                'created_at' => now()
+            ],
+            [
+                'bus_id' => 2,
+                'from' => 'Lagos',
+                'to' => 'Abuja',
+                'departure_date' => '2023-09-30',
+                'departure_time' => '9:00am',
+                'price' => '6500',
+                'seats_available' => '18',
+                'seats_taken' => '0',
+                'created_at' => now()
+            ],
+            [
+                'bus_id' => 2,
+                'from' => 'Abuja',
+                'to' => 'Jos',
+                'departure_date' => '2023-10-01',
+                'departure_time' => '9:00am',
+                'price' => '4500',
+                'seats_available' => '18',
+                'seats_taken' => '0',
+                'created_at' => now()
+            ],
+            [
+                'bus_id' => 2,
+                'from' => 'Abuja',
+                'to' => 'Jos',
+                'departure_date' => '2023-10-01',
+                'departure_time' => '9:00am',
+                'price' => '5500',
+                'seats_available' => '18',
+                'seats_taken' => '0',
+                'created_at' => now()
+            ],
+            [
+                'bus_id' => 2,
+                'from' => 'Abuja',
+                'to' => 'Jos',
+                'departure_date' => '2023-10-03',
+                'departure_time' => '9:00am',
+                'price' => '7500',
+                'seats_available' => '18',
+                'seats_taken' => '0',
+                'created_at' => now()
+            ],
         ];
 
         DB::table('trips')->insert($default);

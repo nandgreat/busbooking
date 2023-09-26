@@ -21,9 +21,11 @@
             <h4 class="delivery-menu-text">Delivery History</h4>
         </div>
     </a>
-    <div class="delivery-menu-item">
-        <h4 class="delivery-menu-text">Track Delivery</h4>
-    </div>
+    <a href="{{route('user.track.delivery')}}">
+        <div class="@if(Route::currentRouteName() === 'user.track.delivery') active-delivery-menu-item @else delivery-menu-item @endif">
+            <h4 class="delivery-menu-text">Track Delivery</h4>
+        </div>
+    </a>
     <a href="{{route('user.book.customer_service')}}">
 
         <div class="@if(Route::currentRouteName() === 'user.book.customer_service') active-delivery-menu-item @else delivery-menu-item @endif">

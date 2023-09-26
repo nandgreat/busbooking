@@ -86,17 +86,22 @@
 
                                 <div class="form-group">
                                     <label for="inputField" style="font-size: larger; font-weight: bold; color:#005DA3;">Feedback Category</label>
-                                    <input type="text" class="form-control border-bottom border-primary" id="inputField" placeholder="Enter something">
+                                    <select class="form-control border-bottom border-primary" id="inputField">
+                                        <option value="">-- Select issue category --</option>
+                                        <option value="complaint">Complaint</option>
+                                        <option value="suggestion">Suggestion</option>
+                                        <option value="issue">Issue</option>
+                                    </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="inputField" style="font-size: larger; font-weight: bold; color:#005DA3;">Subject</label>
-                                    <input type="text" class="form-control border-bottom border-primary" id="inputField" placeholder="Enter something">
+                                    <input type="text" class="form-control border-bottom border-primary" id="inputField" placeholder="Enter Subject">
                                 </div>
 
                                 <div class="form-group" style="margin-bottom: 50px;">
                                     <label for="inputField" style="font-size: larger; font-weight: bold; color:#005DA3;">Message</label>
-                                    <textarea rows="4" type="text" class="form-control border-bottom border-primary" id="inputField" placeholder="Enter something"></textarea>
+                                    <textarea rows="4" type="text" class="form-control border-bottom border-primary" id="inputField" placeholder="Enter Message"></textarea>
                                 </div>
 
                                 <button type="submit" style="padding-top:15px; padding-bottom:15px;" class="btn btn-block btn-primary mt-sm-3 fadeIn fouth">BOOK DELIVERY</button>

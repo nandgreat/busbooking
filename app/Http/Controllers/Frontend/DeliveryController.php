@@ -81,6 +81,17 @@ class DeliveryController extends Controller
         return view('users.pages.delivery_status', compact('deliveryMenu'));
     }
 
+    public function trackDelivery(Request $request)
+    {
+        $details = Trip::with('bus')->find($request->trip_id);
+        $passengers = $request->passengers;
+        $amount = $request->amount;
+
+        $deliveryMenu = "book_delivery";
+
+        return view('users.pages.track_delivery', compact('deliveryMenu'));
+    }
+
     public function deliveryHistory(Request $request)
     {
 

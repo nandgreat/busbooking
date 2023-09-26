@@ -144,6 +144,7 @@ Route::group(['middleware' => 'handle'], function () {
     Route::get('/delivery', [DeliveryController::class, 'deliveryPage'])->name('user.book.delivery');
     Route::post('/process-delivery-booking', [DeliveryController::class, 'processDelivery'])->name('process.delivery');
     Route::get('/delivery-status', [DeliveryController::class, 'deliveryStatus'])->name('user.book.delivery_status');
+    Route::get('/track-delivery', [DeliveryController::class, 'trackDelivery'])->name('user.track.delivery');
     Route::get('/delivery-history', [DeliveryController::class, 'deliveryHistory'])->name('user.book.delivery_history');
     Route::post('/delivery-status', [DeliveryController::class, 'checkDeliveryStatus'])->name('process.delivery_status');
     Route::get('/customer-service', [DeliveryController::class, 'customerService'])->name('user.book.customer_service');

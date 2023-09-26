@@ -18,11 +18,23 @@
                 <!--Card-Title-->
                 <div class="icons text-left">
 
-                    <p class="searchText" style="font-size: 30px;"><strong>Delivery Page</strong></p>
+                    <p class="searchText" style="font-size: 30px;"><strong>Track Delivery Page</strong></p>
 
                     @if ($message = Session::get('error'))
                     <div class="col-md-12" role="alert">
                         <div class="alert alert-danger mb-4" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close" data-dismiss="alert">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg></button>
+                            {{$message}}
+                        </div>
+                    </div>
+                    @endif
+
+                    @if ($message = Session::get('success'))
+                    <div class="col-md-12" role="alert">
+                        <div class="alert alert-success mb-4" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close" data-dismiss="alert">
                                     <line x1="18" y1="6" x2="6" y2="18"></line>
                                     <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -64,57 +76,67 @@
                                 <img id="icon" width="30" alt="" style="width: 30; margin-bottom:0px" src="{{ asset('frontend/assets/img') }}/cog.png" />
                             </div>
                         </div>
+
                         @include('users.fixed.delivery_menu')
-
-
 
                         <div class="col-md-7" style="padding-top: 80px; margin-left:20px; padding-right: 40px; padding-left: 40px; padding-bottom: 80px; justify-content: center;  background-color:#A4B1D4; border-radius: 8px; margin-bottom: 100px; margin-top: 30px">
 
+                            <div id="bookDeliveryDiv">
 
-                            <h2 class="center"><b>Bookings</b></h2>
+                                <form action="{{route('process.delivery_status')}}" method="POST">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="inputField" style="font-size: larger; font-weight: bold; color:#005DA3;">Reference Code</label>
+                                        <input type="text" name="delivery_code" class="form-control border-bottom border-primary transparent-input" style="background-color: transparent; " id="inputField" placeholder="Enter Your Reference Code">
+                                    </div>
 
-                            <div class="row">
+                                    <button type="submit" style="padding-top:15px; padding-bottom:15px; background-color:#fff; color:#005DA3 " class="btn btn-block btn-primary mt-sm-3 fadeIn fouth">Track Your Delivery</button>
 
-                                <div class="table mt-5" style="width:100%">
-                                    @if($deliveries->count()>0)
-                                    <table style="width:100%">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">S/No</th>
-                                                <th scope="col">Pickup Address</th>
-                                                <th scope="col">Destination</th>
-                                                <th scope="col">Receiver</th>
-                                                <th scope="col">Price</th>
-                                                <th scope="col">Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                            @foreach($deliveries as $key=>$a)
-                                            <tr>
-                                                <td>{{($key+1)}}</td>
-                                                <td>{{($a->delivery_from)}}</td>
-                                                <td>{{($a->delivery_to)}} </td>
-                                                <td>{{$a->receiver_name}} <br> {{($a->receiver_phone)}}</td>
-                                                <td>&#8358;{{($a->delivery_amount)}}</td>
-                                                <td>{{($a->delivery_status_id == 0 ? "Pending" : "Delivered")}}</td>
-                                            </tr>
-                                            @endforeach
-
-                                        </tbody>
-                                    </table>
-
-                                    @else
-                                    <p>No trip found</p>
-
-                                    @endif
-
-                                </div>
-
+                                </form>
                             </div>
 
+                            @if(isset($delivery))
+                            <div class="col-md-12" style="background-color: #ffffff; opacity: 0.5; padding-bottom: 20px">
+                                <div class="table mt-5" style="padding-right: 20px; padding-left: 20px">
 
+                                    <h3 class="text-center">Delivery Details</h3>
+
+                                    <div class="row" style="justify-content: space-between; margin-top:30px">
+                                        <p>Pickup Location</p>
+                                        <p>{{$delivery->delivery_from}}</pack>
+                                    </div>
+
+                                    <div class="row" style="justify-content: space-between;">
+                                        <p>Destination</p>
+                                        <p>{{$delivery->delivery_to}}</pack>
+                                    </div>
+
+                                    <div class="row" style="justify-content: space-between;">
+                                        <p>Receiver Name</p>
+                                        <p>{{$delivery->receiver_name}}</pack>
+                                    </div>
+
+                                    <div class="row" style="justify-content: space-between;">
+                                        <p>Receiver Phone</p>
+                                        <p>{{$delivery->receiver_phone}}</pack>
+                                    </div>
+
+                                    <div class="row" style="justify-content: space-between;">
+                                        <p>Delivery Status</p>
+                                        <p>{{$delivery->delivery_status_id == 0 ? "Pending" : "Delivered"}}</pack>
+                                    </div>
+
+                                    <div class="row" style="justify-content: space-between;">
+                                        <p>Delivery Amount</p>
+                                        <p>{{number_format($delivery->delivery_amount)}}</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                            @endif
                         </div>
+
+
 
                     </div>
                 </div>
@@ -135,13 +157,6 @@
 <script src="{{ asset('frontend/js/jquery.min.js') }}" defer></script>
 
 <!-- <script src="{{ asset('js/main.js') }}" defer></script> -->
-
-<script>
-    function showPaymentDiv() {
-        var bookDeliveryDiv = document.getElementById("bookDeliveryDiv").style.display = "none";
-        var x = document.getElementById("paymentDiv").style.display = "block";
-    }
-</script>
 
 @stop
 <style>

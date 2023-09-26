@@ -32,7 +32,7 @@ class bookingticketcontroller extends Controller
         $passengers = $request->no_of_passegers;
 
         if ($from && $to) {
-            $trip = Trip::with('bus')->where('from', $from)->where('to', $to)->get();
+            $trip = Trip::with('bus')->where('from', $from)->where('to', $to)->whereDate('departure_date', $date)->get();
             return view('users.pages.webbusdetails', compact('trip', 'date', 'from', 'passengers', 'to'));
         }
         //  dd(request()->all());
