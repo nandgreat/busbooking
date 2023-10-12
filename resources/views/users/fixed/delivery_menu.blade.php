@@ -8,9 +8,11 @@
     <div class="delivery-menu-item">
         <h4 class="delivery-menu-text">Book Delivery</h4>
     </div>
-    <div class="delivery-menu-item">
-        <h4 class="delivery-menu-text">Reschedule Booking</h4>
-    </div>
+    <a href="{{route('user.reschedule.delivery')}}">
+        <div class="@if(Route::currentRouteName() === 'user.reschedule.delivery') active-delivery-menu-item @else delivery-menu-item @endif">
+            <h4 class="delivery-menu-text">Reschedule Booking</h4>
+        </div>
+    </a>
     <a href="{{route('user.book.delivery_status')}}">
         <div class="@if(Route::currentRouteName() === 'user.book.delivery_status') active-delivery-menu-item @else delivery-menu-item @endif">
             <h4 class="delivery-menu-text">Booking Status</h4>
